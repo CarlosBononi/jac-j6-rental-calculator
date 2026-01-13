@@ -1,0 +1,127 @@
+====== GUIA COMPLETO: Instale a Calculadora JAC J6 no Seu Computador ======
+
+⚠️ IMPORTANTE: Copie e Cole CADA comando abaixo, um por um, no seu terminal/prompt de comando
+Apressione ENTER depois de cada comando
+
+
+===== PASSO 1: Clone o Repositório =====
+Copie e cole este comando:
+
+git clone https://github.com/CarlosBononi/jac-j6-rental-calculator.git
+
+Depois aperte ENTER e execute:
+
+cd jac-j6-rental-calculator
+
+
+===== PASSO 2: Instale as Dependências do Backend =====
+Escreva e aperte ENTER:
+
+npm install
+
+Aguarde até terminar (pode levar alguns minutos)...
+
+
+===== PASSO 3: Crie o Arquivo .env =====
+Crie um arquivo chamado `.env` na pasta raiz do projeto com este conteúdo:
+
+---COPIE TUDO ABAIXO---
+PORT=5000
+NODE_ENV=development
+REACT_APP_API_URL=http://localhost:5000
+---ATÉ AQUI---
+
+Você pode usar:
+- Windows: Notepad (Bloco de Notas)
+- Mac: TextEdit
+- Linux: nano, vi ou gedit
+
+Ou use VSCode se tiver instalado.
+
+
+===== PASSO 4: Inicie o Backend =====
+No terminal, execute:
+
+npm start
+
+Você deve ver:
+"Servidor rodando em http://localhost:5000"
+
+⚠️ DEIXE ESTE TERMINAL ABERTO!
+
+
+===== PASSO 5: Abra um NOVO Terminal/Prompt =====
+
+Abra outra janela de terminal/prompt de comando
+
+
+===== PASSO 6: Instale o Frontend =====
+No novo terminal, vá para a pasta frontend:
+
+cd jac-j6-rental-calculator\frontend
+
+Ou se estiver usando Mac/Linux:
+
+cd jac-j6-rental-calculator/frontend
+
+Agora instale as dependências:
+
+npm install
+
+
+===== PASSO 7: Inicie o Frontend React =====
+Ainda no novo terminal, execute:
+
+npm start
+
+Isto vai abrir automaticamente o navegador em:
+http://localhost:3000
+
+VOCÊS AGORA TEM A CALCULADORA RODANDO! 🎉
+
+
+===== TESTANDO A CALCULADORA =====
+
+Preencha os campos:
+- Distãncia Total (km): 350
+- Preço do Combustível (R$/L): 6.175
+- Dias de Aluguel: 20
+- Valor da Diária (R$): 150
+
+Clique em "Calcular" e você verá todos os cálculos!
+
+
+===== SOLUCIONAR PROBLEMAS =====
+
+1. Se a porta 5000 já está em uso:
+   Mude no .env: PORT=3001
+   Reinicie o backend: npm start
+
+2. Se receber "npm: comando não encontrado":
+   Node.js não está instalado
+   Download: https://nodejs.org/
+
+3. Se receber "git: comando não encontrado":
+   Git não está instalado
+   Download: https://git-scm.com/
+
+4. Se algo não funcionar:
+   Verifique o arquivo SETUP-LOCAL.md no GitHub
+
+
+===== PARAR A APLICAÇÃO =====
+
+Para parar ambos os servidores:
+- Pressione Ctrl + C em cada terminal
+
+
+===== PRÓXIMOS PASSOS =====
+
+1. Customize os cálculos em: server.js
+2. Customize a interface em: frontend/src/App.jsx
+3. Quando pronto para colocar online:
+   - Deploy frontend: Vercel.com ou Netlify.com
+   - Deploy backend: Railway.app ou Heroku.com
+
+
+퉪 Boa sorte! A calculadora agora está pronta para usar! 🌐
