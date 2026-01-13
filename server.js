@@ -71,8 +71,6 @@ app.post('/api/calculate', (req, res) => {
     const result = {
       // Básico
       input: {
-        distance,
-        rentDays: days,
         dailyRate,
         insurance,
       },
