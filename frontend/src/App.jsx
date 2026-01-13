@@ -39,7 +39,7 @@ const App = () => {
         
         <div className="input-group">
           <label htmlFor="days">
-            Número de Dias:
+            Numero de Dias:
           </label>
           <input
             id="days"
@@ -52,7 +52,7 @@ const App = () => {
 
         <div className="input-group">
           <label htmlFor="dailyRate">
-            Valor da Diária (R$):
+            Valor da Diaria (R$):
           </label>
           <input
             id="dailyRate"
@@ -83,24 +83,104 @@ const App = () => {
           disabled={loading}
           className="calculate-btn"
         >
-          {loading ? 'Calculando...' : 'Calcular'}
+          {loading ? 'Calculando...' : 'CALCULAR'}
         </button>
 
         {result && (
           <div className="result">
-            <h2>Resultado:</h2>
-            <div className="result-item">
-              <span>Subtotal (Diária × Dias):</span>
-              <span>R$ {result.subtotal?.toFixed(2) || '0.00'}</span>
+            <h2>Resultados:</h2>
+            
+            <div className="result-section">
+              <h3>Calculos Basicos</h3>
+              <div className="result-item">
+                <span>Dias de Aluguel:</span>
+                <span>{result.calculations?.rentalDays || 0} dias</span>
+              </div>
+              <div className="result-item">
+                <span>Valor da Diaria:</span>
+                <span>R$ {result.calculations?.dailyRate?.toFixed(2) || '0.00'}</span>
+              </div>
+              <div className="result-item">
+                <span>Subtotal:</span>
+                <span>R$ {result.calculations?.subtotal?.toFixed(2) || '0.00'}</span>
+              </div>
+              <div className="result-item">
+                <span>Seguro:</span>
+                <span>R$ {result.calculations?.insurance?.toFixed(2) || '0.00'}</span>
+              </div>
+              <div className="result-item">
+                <span>Consumo de Combustivel:</span>
+                <span>R$ {result.calculations?.carFullConsumption?.toFixed(2) || '0.00'}</span>
+              </div>
+              <div className="result-item">
+                <span>Desconto de Aluguel:</span>
+                <span>-R$ {result.calculations?.rentalDiscount?.toFixed(2) || '0.00'}</span>
+              </div>
+              <div className="result-item total">
+                <span>TOTAL:</span>
+                <span>R$ {result.calculations?.total?.toFixed(2) || '0.00'}</span>
+              </div>
             </div>
-            <div className="result-item">
-              <span>Seguro:</span>
-              <span>R$ {result.insurance?.toFixed(2) || '0.00'}</span>
-            </div>
-            <div className="result-item total">
-              <span>Total:</span>
-              <span>R$ {result.total?.toFixed(2) || '0.00'}</span>
-            </div>
+
+            {result.financialAnalysis && (
+              <div className="result-section">
+                <h3>Analise Financeira</h3>
+                <div className="result-item">
+                  <span>Lucro Liquido:</span>
+                  <span>R$ {result.financialAnalysis.netProfit?.toFixed(2) || '0.00'}</span>
+                </div>
+                <div className="result-item">
+                  <span>Margem de Lucro:</span>
+                  <span>{result.financialAnalysis.profitMargin?.toFixed(2) || '0.00'}%</span>
+                </div>
+                <div className="result-item">
+                  <span>Custo por KM:</span>
+                  <span>R$ {result.financialAnalysis.costPerKm?.toFixed(2) || '0.00'}</span>
+                </div>
+                <div className="result-item">
+                  <span>Custo por Hora:</span>
+                  <span>R$ {result.financialAnalysis.costPerHour?.toFixed(2) || '0.00'}</span>
+                </div>
+                <div className="result-item">
+                  <span>Margem para Manutencao:</span>
+                  <span>R$ {result.financialAnalysis.maintenanceMargin?.toFixed(2) || '0.00'}</span>
+                </div>
+                <div className="result-item">
+                  <span>Custo Total Diario:</span>
+                  <span>R$ {result.financialAnalysis.totalDayCost?.toFixed(2) || '0.00'}</span>
+                </div>
+                <div className="result-item">
+                  <span>Multa por Atraso (25%):</span>
+                  <span>R$ {result.financialAnalysis.lateFee?.toFixed(2) || '0.00'}</span>
+                </div>
+              </div>
+            )}
+
+            {result.profitabilityAnalysis && (
+              <div className="result-section">
+                <h3>Analise de Rentabilidade</h3>
+                <div className="result-item">
+                  <span>Capacidade do Veiculo:</span>
+                  <span>{result.profitabilityAnalysis.passengerCapacity || 0} passageiros</span>
+                </div>
+                <div className="result-item">
+                  <span>Lucro por Passageiro (Cap. Cheia):</span>
+                  <span>R$ {result.profitabilityAnalysis.profitPerPassenger?.toFixed(2) || '0.00'}</span>
+                </div>
+                <div className="result-item">
+                  <span>Lucro por Passageiro (60%):</span>
+                  <span>R$ {result.profitabilityAnalysis.profitPerPassengerAssumed?.toFixed(2) || '0.00'}</span>
+                </div>
+                <div className="result-item">
+                  <span>Investimento Inicial (JAC J6):</span>
+                  <span>R$ {(result.profitabilityAnalysis.initialInvestment || 0).toLocaleString('pt-BR')}</span>
+                </div>
+                <div className="result-item highlight">
+                  <span>ROI (Retorno do Investimento):</span>
+                  <span>{result.profitabilityAnalysis.roi?.toFixed(4) || '0.00'}%</span>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
